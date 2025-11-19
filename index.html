@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div id="dynamicBg" class="dynamic-bg"></div>
+
+  <div id="loadingOverlay" class="loading-overlay hidden">
+      <div class="spinner"></div>
+  </div>
+
+  <div id="toastBox" class="toast-box"></div>
+
+  <div class="dashboard-container app-shell">
+    <header class="dashboard-header glass">
+      <div class="left-row">
+        <div class="search-box glass-input">
+          <span class="material-icons search-icon">search</span>
+          <input type="text" id="cityInput" placeholder="Search city..." autocomplete="off">
+          <button id="searchBtn" class="glass-btn">Go</button>
+        </div>
+      </div>
+      <div class="center-row">
+        <h2 id="headerCityName" class="city-title">--</h2>
+        <div class="time-badge">
+            <span class="material-icons">schedule</span>
+            <p id="localTime" class="local-time">--:--</p>
+        </div>
+      </div>
+      <div class="right-row">
+        <div id="themeBadge" class="theme-badge" data-theme="Day">
+          <span class="material-icons theme-icon">light_mode</span>
+          <span class="theme-text">Day</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-grid">
+      <section class="panel current-weather-panel glass">
+        <div class="weather-info" id="weatherInfo">
+          <div class="weather-icon-wrap">
+            <img src="" id="weatherIcon" class="weather-icon" alt="Weather Icon" style="display:none;" />
+            <div class="icon-glow"></div>
+          </div>
+          <div class="temp-details">
+            <h1 id="temperature" class="main-temp">--°C</h1>
+            <p id="description" class="desc-text">Start by searching a city</p>
+            <div class="feels-chip">
+                <span class="material-icons">thermostat</span>
+                <span id="feelsLike">Feels like: --°C</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel forecast-panel glass">
+        <h3 class="section-title">Current Details</h3>
+
+        <div class="details-grid">
+          <div class="detail-item">
+            <p class="detail-title">Humidity</p>
+            <div class="humidity-visual">
+              <svg class="humidity-ring" viewBox="0 0 120 120" width="80" height="80">
+                <circle class="ring-bg" cx="60" cy="60" r="52" />
+                <circle id="humRing" class="ring-progress" cx="60" cy="60" r="52" />
+                <text id="humidity" class="ring-text" x="50%" y="50%" text-anchor="middle" dy=".3em">--%</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <p class="detail-title">Wind</p>
+            <div class="detail-content">
+                <div class="wind-direction">
+                    <div id="wind-arrow" class="wind-arrow">↑</div>
+                </div>
+                <p id="windSpeed" class="detail-value">-- km/h</p>
+                <p id="wind-direction-text" class="sub-text">--</p>
+            </div>
+          </div>
+
+          <div class="detail-item">
+            <p class="detail-title">Air Quality</p>
+            <div id="aqi-icon" class="mini-icon"></div>
+            <p id="aqi" class="detail-value-sm">--</p>
+          </div>
+          
+          <div class="detail-item">
+            <p class="detail-title">Sunrise</p>
+            <div id="sunrise-icon" class="mini-icon"></div>
+            <p id="sunrise" class="detail-value">--:--</p>
+          </div>
+          
+          <div class="detail-item">
+            <p class="detail-title">Sunset</p>
+            <div id="sunset-icon" class="mini-icon"></div>
+            <p id="sunset" class="detail-value">--:--</p>
+          </div>
+          
+          <div class="detail-item">
+            <p class="detail-title">Pressure</p>
+            <div id="pressure-icon" class="mini-icon"></div>
+            <p id="pressure" class="detail-value">-- hPa</p>
+          </div>
+
+        </div>
+
+        <h3 class="section-title mt-4">Hourly Forecast</h3>
+        <div class="hourly-container">
+          <div class="hourly-items" id="hourlyItems"></div>
+        </div>
+
+        <h3 class="section-title mt-4">5-Day Forecast</h3>
+        <div class="forecast-container">
+          <div class="forecast-items" id="forecastItems"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
